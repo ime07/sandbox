@@ -31,12 +31,19 @@ let g:miniBufExplMapCTabSwitchBuffs = 1
 
 command Vf VimFiler -buffer-name=explorer -split -simple -winwidth=35 -toggle -no-quit
 
+map <C-t> :tabnew<CR>:Vf<CR>
+map <C-n> :tabnext<CR>
+map <C-p> :tabprevious<CR>
+map :qq<CR> :tabc<CR>
+
 " 行番号を非表示 (number:表示)
 set number
 " ルーラーを表示 (noruler:非表示)
 set ruler
 " タブや改行を表示 (list:表示)
 set nolist
+" バックアップファイルを作らない
+set nobackup
 set autoindent
 set list
 set listchars=eol:↩,trail:-,tab:>\ ,extends:<
@@ -69,6 +76,8 @@ autocmd BufWritePre * :%s/\s\+$//ge
 " 保存時にtabをスペースに変換する
 autocmd BufWritePre * :%s/\t/ /ge
 
+set syn=php
+
 if has('syntax')
     syntax enable
     set t_Co=256
@@ -86,5 +95,4 @@ if has('syntax')
     set background=dark
     colorscheme solarized
 endif
-
 
