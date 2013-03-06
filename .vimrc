@@ -9,6 +9,7 @@ endif
 NeoBundle 'http://github.com/soh335/vim-symfony.git'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'git://github.com/scrooloose/nerdtree.git'
+NeoBundle 'https://github.com/Shougo/neocomplcache.git'
 NeoBundle 'https://github.com/Shougo/vimfiler.git'
 NeoBundle 'https://github.com/Shougo/unite.vim.git'
 NeoBundle 'https://github.com/Shougo/vimproc.git'
@@ -16,9 +17,41 @@ NeoBundle 'https://github.com/Shougo/vimshell.git'
 " NeoBundle 'git://github.com/fholgado/minibufexpl.vim.git'
 " NeoBundle 'git://github.com/vim-scripts/buftabs.git'
 " NeoBundle 'git://github.com/scrooloose/syntastic.git'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+
+
 
 filetype plugin on
 filetype indent on
+
+
+" 補完ウィンドウの設定
+set completeopt=menuone
+
+" ディレクトリ補完時にスラッシュを補う
+let g:vimshell_enable_auto_slash = 1
+"
+" 起動時に有効化
+let g:neocomplcache_enable_at_startup = 1
+"
+" 大文字が入力されるまで大文字小文字の区別を無視する
+let g:neocomplcache_enable_smart_case = 1
+"
+" _(アンダースコア)区切りの補完を有効化
+let g:neocomplcache_enable_underbar_completion = 1
+"
+let g:neocomplcache_enable_camel_case_completion  =  1
+"
+" ポップアップメニューで表示される候補の数
+let g:neocomplcache_max_list = 20
+
 
 let g:buftabs_only_basename=1
 let g:buftabs_in_statusline=1
@@ -35,6 +68,7 @@ map <C-t> :tabnew<CR>:Vf<CR>
 map <C-n> :tabnext<CR>
 map <C-p> :tabprevious<CR>
 map :qq<CR> :tabc<CR>
+map :Sh<CR> :VimShell<CR>
 
 " 行番号を非表示 (number:表示)
 set number
