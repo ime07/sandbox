@@ -16,17 +16,22 @@ NeoBundle 'https://github.com/Shougo/vimproc.git'
 NeoBundle 'https://github.com/Shougo/vimshell.git'
 " NeoBundle 'git://github.com/fholgado/minibufexpl.vim.git'
 " NeoBundle 'git://github.com/vim-scripts/buftabs.git'
-" NeoBundle 'git://github.com/scrooloose/syntastic.git'
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
+NeoBundle 'git://github.com/scrooloose/syntastic.git'
+" NeoBundle 'Shougo/vimproc', {
+"     \ 'build' : {
+"      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
+"      \     'cygwin' : 'make -f make_cygwin.mak',
+"      \     'mac' : 'make -f make_mac.mak',
+"      \     'unix' : 'make -f make_unix.mak',
+"      \    },
+"      \ }
 
 
+function PHPLint()
+    let result = system( &ft . ' -l ' . bufname(""))
+        echo result
+endfunction
+autocmd FileType php  :nmap ,l :call PHPLint()<CR>
 
 filetype plugin on
 filetype indent on
