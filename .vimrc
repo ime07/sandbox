@@ -16,7 +16,11 @@ NeoBundle 'https://github.com/Shougo/vimproc.git'
 NeoBundle 'https://github.com/Shougo/vimshell.git'
 " NeoBundle 'git://github.com/fholgado/minibufexpl.vim.git'
 " NeoBundle 'git://github.com/vim-scripts/buftabs.git'
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
+" NeoBundle 'git://github.com/scrooloose/syntastic.git'
+NeoBundle 'git://github.com/majutsushi/tagbar.git'
+NeoBundle 'git://github.com/jdonaldson/vaxe.git'
+NeoBundle 'git://github.com/jdonaldson/vim-powerline.git'
+NeoBundle 'git://github.com/docteurklein/php-getter-setter.vim.git'
 " NeoBundle 'Shougo/vimproc', {
 "     \ 'build' : {
 "      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
@@ -74,6 +78,10 @@ map <C-n> :tabnext<CR>
 map <C-p> :tabprevious<CR>
 map :qq<CR> :tabc<CR>
 map :Sh<CR> :VimShell<CR>
+map :Gs<CR> :InsertBothGetterSetter<CR>
+nmap <F8> :TagbarToggle<CR>
+map :vi<CR> :call vaxe#ImportClass()<CR>
+
 
 " 行番号を非表示 (number:表示)
 set number
@@ -101,11 +109,15 @@ set whichwrap=b,s,h,l,<,>,[,]
 "検索時に大文字小文字を区別しない
 set ic
 set clipboard=unnamed
+set autowrite
 
 autocmd FileType php :set dictionary=~/.vim/dict/php_func.dict
-set tags=~/.vim/tags/symfony.tags,~/.vim/tags/symfonycode.tags
+"set tags=~/.vim/tags/symfony.tags,~/.vim/tags/symfonycode.tags
+set tags=~/.vim/tags/.htags,~/.vim/tags/.haxetags
 set mouse=niv
 set clipboard=unnamed
+
+set directory=/tmp
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
