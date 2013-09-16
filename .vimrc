@@ -14,9 +14,11 @@ NeoBundle 'https://github.com/Shougo/vimfiler.git'
 NeoBundle 'https://github.com/Shougo/unite.vim.git'
 NeoBundle 'https://github.com/Shougo/vimproc.git'
 NeoBundle 'https://github.com/Shougo/vimshell.git'
+NeoBundle 'git://github.com/docteurklein/php-getter-setter.vim.git'
 " NeoBundle 'git://github.com/fholgado/minibufexpl.vim.git'
 " NeoBundle 'git://github.com/vim-scripts/buftabs.git'
 NeoBundle 'git://github.com/scrooloose/syntastic.git'
+NeoBundle 'git://github.com/jdonaldson/vaxe.git'
 " NeoBundle 'Shougo/vimproc', {
 "     \ 'build' : {
 "      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
@@ -26,6 +28,7 @@ NeoBundle 'git://github.com/scrooloose/syntastic.git'
 "      \    },
 "      \ }
 
+let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 
 function PHPLint()
     let result = system( &ft . ' -l ' . bufname(""))
@@ -74,6 +77,7 @@ map <C-n> :tabnext<CR>
 map <C-p> :tabprevious<CR>
 map :qq<CR> :tabc<CR>
 map :Sh<CR> :VimShell<CR>
+map :Gs<CR> :InsertBothGetterSetter<CR>
 
 " 行番号を非表示 (number:表示)
 set number
@@ -109,6 +113,9 @@ set clipboard=unnamed
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+let &t_SI = "\e]50;CursorShape=1\x7"
+let &t_EI = "\e]50;CursorShape=0\x7"
 
 " 保存時に行末の空白を除去する
 autocmd BufWritePre * :%s/\s\+$//ge
